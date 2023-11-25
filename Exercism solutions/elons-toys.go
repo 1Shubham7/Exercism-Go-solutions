@@ -1,45 +1,35 @@
 package elon
 
-type struct Car{
-    speed int
-    batteryDrain int
-    battery int
-    distance int
-}
-
+import (
+    "fmt"
+)
 
 // TODO: define the 'Drive()' method
-func Drive(speed, batteryDrain){
-    meters := 
-    Car {
-    	speed: speed,
-   		batteryDrain: batteryDrain,
-  	 	battery: 100 - batteryDrain,
-	    distance: speed,
+func (c *Car) Drive() {
+
+    if (c.battery>c.batteryDrain){
+        c.distance = c.distance + c.speed
+        c.battery = c.battery - c.batteryDrain
     }
-    
 }
 
 // TODO: define the 'DisplayDistance() string' method
-func DisplayDistance(distance int)  string{
-    
+func (c *Car) DisplayDistance()  string{
+    return fmt.Sprintf("Driven %d meters", c.distance)
 }
 
 // TODO: define the 'DisplayBattery() string' method
-func DisplayBattery() {
-    
+func (c *Car) DisplayBattery() string {
+        return fmt.Sprintf("Battery at %d%%", c.battery)
 }
 
 // TODO: define the 'CanFinish(trackDistance int) bool' method
-CanFinish(trackDistance int) bool{
-    
-}
+func (c *Car) CanFinish(trackDistance int) bool{
+    // currentDistance := currentDistance + speed
 
-// Your first steps could be to read through the tasks, and create
-// these functions with their correct parameter lists and return types.
-// The function body only needs to contain `panic("")`.
-// 
-// This will make the tests compile, but they will fail.
-// You can then implement the function logic one by one and see
-// an increasing number of tests passing as you implement more 
-// functionality.
+    if (c.battery / c.batteryDrain * c.speed >= trackDistance){
+        return true 
+    } else {
+    	return false
+    }
+}
